@@ -39,7 +39,7 @@ def developer(dataframe, desarrollador):
 @app.get("/developer/{desarrollador}")
 async def get_developer(desarrollador: str):
     try:
-        parquet_path = "C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_1.parquet"
+        parquet_path = "Dataset/dataset_endpoint_1.parquet"
         df = pd.read_parquet(parquet_path)
         result = developer(df, desarrollador)
         return result.to_dict(orient="records")
@@ -85,7 +85,7 @@ def userdata(df, user_id):
     return resultado
 
 @app.get("/userdata/{user_id}")
-async def get_user_id(user_id: str, file_path: str = 'C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_2.parquet'):
+async def get_user_id(user_id: str, file_path: str = 'Dataset/dataset_endpoint_2.parquet'):
     try:
         # Lee el DataFrame desde el archivo Parquet
         df = pd.read_parquet(file_path)
@@ -126,7 +126,7 @@ def UserForGenre(genre: str, df):
     return result
 
 @app.get("/user_for_genre/{genre}")
-async def get_user_for_genre(genre: str, file_path: str = 'C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_3.parquet'):
+async def get_user_for_genre(genre: str, file_path: str = 'Dataset/dataset_endpoint_3.parquet'):
     try:
         df = pd.read_parquet(file_path)
         result = UserForGenre(genre, df)
@@ -160,7 +160,7 @@ def best_developer_year(dataframe, year):
     return result
 
 @app.get("/best_developer_year/{year}")
-async def get_best_developer_year(year: int, file_path: str = 'C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_4.parquet'):
+async def get_best_developer_year(year: int, file_path: str = 'Dataset/dataset_endpoint_4.parquet'):
     try:
         df = pd.read_parquet(file_path)
         result = best_developer_year(df, year)
@@ -200,7 +200,7 @@ def developer_reviews_analysis(df, desarrolladora):
     return result
 
 @app.get("/developer_reviews_analysis/{desarrolladora}")
-async def get_developer_reviews_analysis(desarrolladora: str, file_path: str = 'C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_5.parquet'):
+async def get_developer_reviews_analysis(desarrolladora: str, file_path: str = 'Dataset/dataset_endpoint_5.parquet'):
     try:
         df = pd.read_parquet(file_path)
         result = developer_reviews_analysis(df, desarrolladora)
