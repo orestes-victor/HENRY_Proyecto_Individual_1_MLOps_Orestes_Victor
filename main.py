@@ -85,10 +85,11 @@ def userdata(df, user_id):
     return resultado
 
 @app.get("/userdata/{user_id}")
-async def get_user_id(user_id: str, file_path: str = 'Dataset/dataset_endpoint_2.parquet'):
+async def get_user_id(user_id: str):
     try:
+        parquet_path2 = "Dataset/dataset_endpoint_2.parquet"
         # Lee el DataFrame desde el archivo Parquet
-        df = pd.read_parquet(file_path)
+        df = pd.read_parquet(parquet_path2)
         
         # Llama a la función userdata
         result = userdata(df, user_id)
@@ -126,9 +127,10 @@ def UserForGenre(genre: str, df):
     return result
 
 @app.get("/user_for_genre/{genre}")
-async def get_user_for_genre(genre: str, file_path: str = 'Dataset/dataset_endpoint_3.parquet'):
+async def get_user_for_genre(genre: str):
     try:
-        df = pd.read_parquet(file_path)
+        parquet_path3 = "Dataset/dataset_endpoint_3.parquet"
+        df = pd.read_parquet(parquet_path3)
         result = UserForGenre(genre, df)
         return JSONResponse(content=result)
     except Exception as e:
@@ -160,9 +162,10 @@ def best_developer_year(dataframe, year):
     return result
 
 @app.get("/best_developer_year/{year}")
-async def get_best_developer_year(year: int, file_path: str = 'Dataset/dataset_endpoint_4.parquet'):
+async def get_best_developer_year(year: int):
     try:
-        df = pd.read_parquet(file_path)
+        parquet_path4 = "Dataset/dataset_endpoint_4.parquet"
+        df = pd.read_parquet(parquet_path4)
         result = best_developer_year(df, year)
         return JSONResponse(content=result)
     except Exception as e:
@@ -200,9 +203,10 @@ def developer_reviews_analysis(df, desarrolladora):
     return result
 
 @app.get("/developer_reviews_analysis/{desarrolladora}")
-async def get_developer_reviews_analysis(desarrolladora: str, file_path: str = 'Dataset/dataset_endpoint_5.parquet'):
+async def get_developer_reviews_analysis(desarrolladora: str):
     try:
-        df = pd.read_parquet(file_path)
+        parquet_path5 = "Dataset/dataset_endpoint_5.parquet"
+        df = pd.read_parquet(parquet_path5)
         result = developer_reviews_analysis(df, desarrolladora)
         return JSONResponse(content=result)
     except Exception as e:
