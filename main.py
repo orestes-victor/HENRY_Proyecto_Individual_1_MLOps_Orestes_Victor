@@ -3,10 +3,27 @@ from fastapi.responses import JSONResponse
 import pandas as pd
 
 app = FastAPI()
+
+
     
 #1° Endpoint________________________________________________________________________________________________________________________________________________________________________________
     
 def developer(dataframe, desarrollador):
+
+    '''
+    Esta función devuelve estadísticas por año para un desarrollador específico en un DataFrame.
+         
+    Args:
+        dataframe (pd.DataFrame): DataFrame que contiene los datos.
+        desarrollador (str): Nombre del desarrollador a analizar.
+    
+    Returns:
+        pd.DataFrame: Un DataFrame que contiene estadísticas por año para el desarrollador.
+            - 'Año' (int): Año de lanzamiento.
+            - 'Items' (int): Cantidad total de items lanzados por el desarrollador.
+            - '% Free' (float): Porcentaje medio de items gratuitos lanzados por el desarrollador.
+    '''
+
     df_desarrollador = dataframe[dataframe['developer'] == desarrollador]
     stats_por_anio = df_desarrollador.groupby('release_anio').agg({
         'items_free': 'sum',
@@ -18,7 +35,6 @@ def developer(dataframe, desarrollador):
     stats_por_anio = stats_por_anio.rename(columns={'items_total': 'Items'})
     stats_por_anio = stats_por_anio.rename(columns={'percentage_free': '% Free'})
     return stats_por_anio[['Año', 'Items', '% Free']]
-#get_stats_por_desarrollador
 
 @app.get("/developer/{desarrollador}")
 async def get_developer(desarrollador: str):
@@ -34,6 +50,22 @@ async def get_developer(desarrollador: str):
 #2° Endpoint________________________________________________________________________________________________________________________________________________________________________________
 
 def userdata(df, user_id):
+
+    '''
+    Esta función devuelve información sobre un usuario según su 'user_id'.
+         
+    Args:
+        df (pd.DataFrame): DataFrame que contiene los datos del usuario.
+        user_id (str): Identificador único del usuario.
+    
+    Returns:
+        dict: Un diccionario que contiene información sobre el usuario.
+            - 'Usuario' (str): Identificador único del usuario.
+            - 'Dinero gastado' (str): Cantidad de dinero gastado por el usuario en formato USD.
+            - '% de recomendación' (str): Porcentaje de recomendaciones realizadas por el usuario.
+            - 'Cantidad de items' (int): Cantidad de items únicos que tiene el usuario.
+    '''
+
     usuario = df[df['user_id'] == user_id]
 
     if usuario.empty:
@@ -68,6 +100,22 @@ async def get_user_id(user_id: str, file_path: str = 'C:/Users/Usuario/Desktop/B
 #3° Endpoint________________________________________________________________________________________________________________________________________________________________________________
 
 def UserForGenre(genre: str, df):
+
+    '''
+    Esta función devuelve información sobre el usuario con más horas jugadas para un género específico.
+         
+    Args:
+        genre (str): Género para el cual se desea obtener la información.
+        df (pd.DataFrame): DataFrame que contiene los datos.
+    
+    Returns:
+        dict: Un diccionario que contiene información sobre el usuario con más horas jugadas para el género.
+            - 'Usuario con más horas jugadas para género [genre]' (str): Identificador del usuario con más horas jugadas.
+            - 'Horas jugadas' (list): Lista de diccionarios con el año y las horas jugadas por año.
+                - 'Año' (int): Año de lanzamiento.
+                - 'Horas' (int): Horas jugadas por año.
+    '''
+
     df['release_anio'] = pd.to_numeric(df['release_anio'], errors='coerce', downcast='integer')
     genre_df = df[df['genres'] == genre]
     genre_df['playtime_forever'] = (genre_df['playtime_forever'] / 60 / 60).astype(int)
@@ -90,6 +138,19 @@ async def get_user_for_genre(genre: str, file_path: str = 'C:/Users/Usuario/Desk
 #4° Endpoint________________________________________________________________________________________________________________________________________________________________________________
 
 def best_developer_year(dataframe, year):
+
+    '''
+    Esta función devuelve los mejores desarrolladores para un año específico basado en el análisis de sentimientos.
+         
+    Args:
+        dataframe (pd.DataFrame): DataFrame que contiene los datos.
+        year (int): Año para el cual se desean obtener los mejores desarrolladores.
+    
+    Returns:
+        list: Una lista de diccionarios que contiene información sobre los mejores desarrolladores.
+            - Cada diccionario tiene la forma: {"Puesto [posición]: [nombre del desarrollador]": [sentimiento total]}
+    '''
+
     df_year = dataframe[dataframe['release_anio'] == year]
     df_filtered = df_year[df_year['sentiment_analysis'] == 2]
     df_grouped = df_filtered.groupby('developer')['sentiment_analysis'].sum().reset_index()
@@ -111,6 +172,20 @@ async def get_best_developer_year(year: int, file_path: str = 'C:/Users/Usuario/
 #5° Endpoint________________________________________________________________________________________________________________________________________________________________________________
 
 def developer_reviews_analysis(df, desarrolladora):
+
+    '''
+    Esta función realiza un análisis de sentimientos de las reseñas para una desarrolladora específica.
+         
+    Args:
+        df (pd.DataFrame): DataFrame que contiene los datos.
+        desarrolladora (str): Nombre de la desarrolladora a analizar.
+    
+    Returns:
+        dict: Un diccionario que contiene el resultado del análisis de sentimientos.
+            - La clave es el nombre de la desarrolladora.
+            - El valor es una lista con la cantidad de reseñas negativas y positivas.
+    '''
+
     filtered_data = df[df['developer'] == desarrolladora]
     positive_count = 0
     negative_count = 0
