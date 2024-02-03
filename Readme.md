@@ -29,9 +29,9 @@ Para iniciar nos centramos en entender los archivos recibidos, en que tipo de fo
 Para esto último primero revisamos y analizamos el archivo <diccionario de datos de STEAM> para saber con que nos vamos a encontrar. Una vez analizados vemos que dos archivos contienen datos anidados, estos son la columna <reviews> en el archivo <user_reviews.gz.json> y la columna <items> en el archivo <user_items.gz.json>. 
 Podemos encontrar el analisis de este diccionario aqui: [Diccionario de Datos STEAM - Analizado](https://docs.google.com/spreadsheets/d/18snvkj9hfdi9519ACAcNWCXqf43o6TBb/edit?usp=sharing&ouid=115734177680772795416&rtpof=true&sd=true).
 
-Una vez preparado el dataset, extraemos los archivos y realizamos ETL cada archivo, podemos enocontrar el codigo que usamos para realizar el ETL [Aqui](Notebooks/1_ETL.ipynb).
+Una vez preparado el dataset, extraemos los archivos y realizamos ETL cada archivo, podemos enocontrar el codigo que usamos para realizar el ETL [Aqui](https://colab.research.google.com/drive/1wpoG_OeerKu2RNRqlkmaiyt9TrYebUN9?usp=drive_link)).
 
-Una vez realizado el ETL vamos encontrar los mismo archivos, pero en un estado mas ordenado y limpio, haciendo click [Aqui](https://drive.google.com/drive/folders/1wLW1KnpgTIuFHboAfY5vj-1hsSvAbVGN?usp=drive_link) con ello podemos dar commienzo a los siguientes pasos en este proyecto.
+Una vez realizado el ETL vamos encontrar los mismo archivos, pero en un estado mas ordenado y limpio, haciendo click [Aqui](https://drive.google.com/drive/folders/1qvEJ80g96ZBjeuiH_M_Nv5Mnr_GACZ0t?usp=drive_link) con ello podemos dar commienzo a los siguientes pasos en este proyecto.
 
 
 
@@ -66,9 +66,3 @@ Proporciona instrucciones detalladas sobre cómo instalar y ejecutar el proyecto
 
 ## Colaboradores
 - Orestes Victor
-
-
-
-### Ayuda memoria para correr UVICORN
-
-uvicorn main:app --reload
