@@ -11,7 +11,7 @@ app = FastAPI()
 def read_root():
     message = """
     <div style="text-align: center; font-size: 24px; margin-bottom: 20px;">
-        ¡Bienvenido al proyecto Johana!
+        ¡Bienvenido al proyecto N°1 de HENRY LABS!
     </div>
     <div style="text-align: center; font-size: 18px; margin-bottom: 40px;">
         En este proyecto vamos a ver un sistema de recomendación de videojuegos para usuarios de Steam (MVP)
