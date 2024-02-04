@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse
 import pandas as pd
 
 app = FastAPI()
@@ -28,7 +29,7 @@ def redirect_to_docs():
     link = "https://https-github-com-orestes-victor-henry.onrender.com/docs"
     raise HTTPException(status_code=302, detail="Redirecting", headers={"Location": link})
 
-    
+
 #1° Endpoint________________________________________________________________________________________________________________________________________________________________________________
     
 def developer(dataframe, desarrollador):
@@ -62,7 +63,8 @@ def developer(dataframe, desarrollador):
 @app.get("/developer/{desarrollador}")
 async def get_developer(desarrollador: str):
     try:
-        parquet_path = "Dataset/dataset_endpoint_1.parquet"
+        parquet_path = "C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_1.parquet"
+        #parquet_path = "Dataset/dataset_endpoint_1.parquet"
         df = pd.read_parquet(parquet_path)
         result = developer(df, desarrollador)
         return result.to_dict(orient="records")
@@ -110,7 +112,8 @@ def userdata(df, user_id):
 @app.get("/userdata/{user_id}")
 async def get_user_id(user_id: str):
     try:
-        parquet_path2 = "Dataset/dataset_endpoint_2.parquet"
+        #parquet_path2 = "Dataset/dataset_endpoint_2.parquet"
+        parquet_path2 = "C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_2.parquet"
         # Lee el DataFrame desde el archivo Parquet
         df = pd.read_parquet(parquet_path2)
         
@@ -152,7 +155,8 @@ def UserForGenre(genre: str, df):
 @app.get("/user_for_genre/{genre}")
 async def get_user_for_genre(genre: str):
     try:
-        parquet_path3 = "Dataset/dataset_endpoint_3.parquet"
+        #parquet_path3 = "Dataset/dataset_endpoint_3.parquet"
+        parquet_path3 = "C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_3.parquet"
         df = pd.read_parquet(parquet_path3)
         result = UserForGenre(genre, df)
         return JSONResponse(content=result)
@@ -187,7 +191,8 @@ def best_developer_year(dataframe, year):
 @app.get("/best_developer_year/{year}")
 async def get_best_developer_year(year: int):
     try:
-        parquet_path4 = "Dataset/dataset_endpoint_4.parquet"
+        #parquet_path4 = "Dataset/dataset_endpoint_4.parquet"
+        parquet_path4 = "C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_4.parquet"
         df = pd.read_parquet(parquet_path4)
         result = best_developer_year(df, year)
         return JSONResponse(content=result)
@@ -228,7 +233,8 @@ def developer_reviews_analysis(df, desarrolladora):
 @app.get("/developer_reviews_analysis/{desarrolladora}")
 async def get_developer_reviews_analysis(desarrolladora: str):
     try:
-        parquet_path5 = "Dataset/dataset_endpoint_5.parquet"
+        #parquet_path5 = "Dataset/dataset_endpoint_5.parquet"
+        parquet_path5 = "C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_5.parquet"
         df = pd.read_parquet(parquet_path5)
         result = developer_reviews_analysis(df, desarrolladora)
         return JSONResponse(content=result)
