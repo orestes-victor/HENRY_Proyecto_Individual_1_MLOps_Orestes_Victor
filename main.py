@@ -7,7 +7,7 @@ app = FastAPI()
 
 #Presentación________________________________________________________________________________________________________________________________________________________________________________
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse, include_in_schema=False)
 def read_root():
     message = """
     <div style="text-align: center; font-size: 24px; margin-bottom: 20px;">
