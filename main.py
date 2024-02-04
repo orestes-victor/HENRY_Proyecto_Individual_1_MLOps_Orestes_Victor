@@ -3,7 +3,12 @@ from fastapi.responses import JSONResponse
 from fastapi.responses import HTMLResponse
 import pandas as pd
 
-app = FastAPI()
+app = FastAPI(
+    redoc_url=None,  # Deshabilitar ReDoc
+    swagger_ui_oauth2_redirect_url=None,  # Deshabilitar OAuth2 en Swagger UI
+    swagger_ui_init_oauth=None,  # Deshabilitar OAuth2 en Swagger UI
+    swagger_ui_config={"displayOperationId": True, "displayRequestDuration": True, "docExpansion": "none", "displayOperationId": True, "tagsSorter": "alpha", "operationsSorter": "alpha", "showExtensions": True, "deepLinking": True, "defaultModelsExpandDepth": 0, "defaultModelExpandDepth": 1},
+)
 
 #Presentación________________________________________________________________________________________________________________________________________________________________________________
 
