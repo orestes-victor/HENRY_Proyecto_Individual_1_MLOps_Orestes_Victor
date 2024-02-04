@@ -24,7 +24,7 @@ def read_root():
     """
     return HTMLResponse(content=message)
 
-@app.get("/redirect")
+@app.get("/redirect", include_in_schema=False)
 def redirect_to_docs():
     link = "https://https-github-com-orestes-victor-henry.onrender.com/docs"
     raise HTTPException(status_code=302, detail="Redirecting", headers={"Location": link})
