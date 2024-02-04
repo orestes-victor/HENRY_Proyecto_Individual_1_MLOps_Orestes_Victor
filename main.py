@@ -4,6 +4,29 @@ import pandas as pd
 
 app = FastAPI()
 
+#Presentación________________________________________________________________________________________________________________________________________________________________________________
+
+@app.get("/", response_class=HTMLResponse)
+def read_root():
+    message = """
+    <div style="text-align: center; font-size: 24px; margin-bottom: 20px;">
+        ¡Bienvenido al proyecto Johana!
+    </div>
+    <div style="text-align: center; font-size: 18px; margin-bottom: 40px;">
+        En este proyecto vamos a ver un sistema de recomendación de videojuegos para usuarios de Steam (MVP)
+    </div>
+    <div style="text-align: center;">
+        <form action='/redirect' style="display: inline-block;">
+            <input type='submit' value='Comencemos' style="font-size: 16px;">
+        </form>
+    </div>
+    """
+    return HTMLResponse(content=message)
+
+@app.get("/redirect")
+def redirect_to_docs():
+    link = "https://https-github-com-orestes-victor-henry.onrender.com/docs"
+    raise HTTPException(status_code=302, detail="Redirecting", headers={"Location": link})
 
     
 #1° Endpoint________________________________________________________________________________________________________________________________________________________________________________
