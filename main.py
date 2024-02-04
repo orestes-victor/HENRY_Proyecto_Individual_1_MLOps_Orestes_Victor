@@ -129,7 +129,7 @@ def UserForGenre(genre: str, df):
 @app.get("/user_for_genre/{genre}")
 async def get_user_for_genre(genre: str):
     try:
-        parquet_path3 = "Dataset/dataset_endpoint_3_1.parquet"
+        parquet_path3 = "Dataset/dataset_endpoint_3.parquet"
         df = pd.read_parquet(parquet_path3)
         result = UserForGenre(genre, df)
         return JSONResponse(content=result)
