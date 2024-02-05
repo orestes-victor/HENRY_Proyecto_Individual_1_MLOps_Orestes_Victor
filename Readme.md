@@ -29,13 +29,12 @@ El proyecto parte de 3 archivos que nos proporciona [HENRY](https://www.soyhenry
 * `output_steam_games.json` es un dataset que contiene datos relacionados con los juegos en sí, como los título, el desarrollador, los precios, características técnicas, etiquetas, entre otros datos.
 
 ## Objetivo
-___
+
 El objetivo principal es crear un flujo de trabajo eficiente que incluya la recopilación y transformación de datos, análisis exploratorio, desarrollo de modelos y su implementación utilizando prácticas de MLOps. <p/> 
 
 Este proyecto simula el trabajo de un MLOps Engineer combinando las funciones de Data Engineer y Data Scientist para la plataforma Steam. Se requiere desarrollar un Producto Mínimo Viable que incluya una API en la nube y la implementación de dos modelos de Machine Learning: análisis de sentimientos en comentarios de usuarios y recomendación de juegos basada en nombre o preferencias de usuario.
 
 ## Etapas del Proyecto
-___
 
 ![Proceso](Assets/Procesos_MLOps.png)
 <br />
