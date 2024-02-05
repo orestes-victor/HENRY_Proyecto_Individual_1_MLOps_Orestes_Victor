@@ -2,6 +2,14 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.responses import HTMLResponse
 import pandas as pd
+import numpy as np
+import scipy as sp
+from sklearn.metrics.pairwise import cosine_similarity
+import operator
+import pyarrow as pa
+import pyarrow.parquet as pq
+from scipy.sparse import csr_matrix
+
 
 app = FastAPI()
 
@@ -240,3 +248,45 @@ async def get_developer_reviews_analysis(desarrolladora: str):
         return JSONResponse(content=result)
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
+
+
+
+
+#MODELO DE RECOMENDACIÓN________________________________________________________________________________________________________________________________________________________________________________
+
+df = pd.read_csv('C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/df_recomendacion.csv')
+
+piv = df.pivot_table(index=['user_id'], columns=['item_name'], values='rating')
+
+# Normalización del dataframe 'piv'
+piv_norm = piv.apply(lambda x: (x - np.mean(x)) / (np.max(x) - np.min(x)), axis=1)
+# Se borran las columnas que contienen solo cero o no tienen rating, se rellenan los vacíos con 0 y se hace la transpuesta
+piv_norm.fillna(0, inplace=True)
+piv_norm = piv_norm.T
+piv_norm = piv_norm.loc[:, (piv_norm != 0).any(axis=0)]
+
+piv_sparse = csr_matrix(piv_norm.values)
+
+item_similarity = cosine_similarity(piv_sparse)
+user_similarity = cosine_similarity(piv_sparse.T)
+
+# item similarity dataframe
+item_sim_df = pd.DataFrame(item_similarity, index=piv_norm.index, columns=piv_norm.index)
+# user similarity dataframe
+user_sim_df = pd.DataFrame(user_similarity, index=piv_norm.columns, columns=piv_norm.columns)
+
+
+@app.get("/top_game/{game}", tags=['Sistema de recomendación'])
+def top_game(game: str):
+
+    count = 1
+    similar_games = []
+
+    for item in item_sim_df.sort_values(by=game, ascending=False).index[1:6]:
+        similar_games.append({'No.': count, 'Game': item})
+        count += 1
+
+    return {"similar_games": similar_games}
+
+
+#MODELO DE RECOMENDACIÓN________________________________________________________________________________________________________________________________________________________________________________
