@@ -37,7 +37,7 @@ Este proyecto simula el trabajo de un MLOps Engineer combinando las funciones de
 ## Etapas del Proyecto
 ___
 
-![Proceso](Assets/Procesos MLOps.png)
+![Proceso](Assets/Procesos_MLOps.png)
 <br />
 
 ### 1. Ingeniería de Datos (ETL)
