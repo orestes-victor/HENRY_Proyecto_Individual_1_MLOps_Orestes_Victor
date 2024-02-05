@@ -37,6 +37,9 @@ Este proyecto simula el trabajo de un MLOps Engineer combinando las funciones de
 ## Etapas del Proyecto
 ___
 
+![Proceso](Assets/Procesos MLOps.png)
+<br />
+
 ### 1. Ingeniería de Datos (ETL)
 Para iniciar nos centramos en entender los archivos recibidos, en que tipo de formato se presentan y cual es su contenido general.
 Para esto último primero revisamos y analizamos el archivo `diccionario de datos de STEAM` para saber con que nos vamos a encontrar. Una vez analizados vemos que dos archivos contienen datos anidados, estos son la columna `reviews` en el archivo `user_reviews.gz.json` y la columna `items` en el archivo `user_items.gz.json`. 
