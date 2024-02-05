@@ -60,11 +60,11 @@ def developer(dataframe, desarrollador):
     stats_por_anio = stats_por_anio.rename(columns={'percentage_free': '% Free'})
     return stats_por_anio[['Año', 'Items', '% Free']]
 
-@app.get("/developer/{desarrollador}")
+@app.get("/developer/{desarrollador}", tags=['Consultas generales'])
 async def get_developer(desarrollador: str):
     try:
-        #parquet_path = "C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_1.parquet"
-        parquet_path = "Dataset/dataset_endpoint_1.parquet"
+        parquet_path = "C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/dataset_endpoint_1.parquet"
+        #parquet_path = "Dataset/dataset_endpoint_1.parquet"
         df = pd.read_parquet(parquet_path)
         result = developer(df, desarrollador)
         return result.to_dict(orient="records")
@@ -109,11 +109,11 @@ def userdata(df, user_id):
 
     return resultado
 
-@app.get("/userdata/{user_id}")
+@app.get("/userdata/{user_id}", tags=['Consultas generales'])
 async def get_user_id(user_id: str):
     try:
-        parquet_path2 = "Dataset/dataset_endpoint_2.parquet"
-        #parquet_path2 = "C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_2.parquet"
+        #parquet_path2 = "Dataset/dataset_endpoint_2.parquet"
+        parquet_path2 = "C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/dataset_endpoint_2.parquet"
         # Lee el DataFrame desde el archivo Parquet
         df = pd.read_parquet(parquet_path2)
         
@@ -152,11 +152,11 @@ def UserForGenre(genre: str, df):
     result = {"Usuario con más horas jugadas para género " + genre: max_playtime_user, "Horas jugadas": playtime_list}
     return result
 
-@app.get("/user_for_genre/{genre}")
+@app.get("/user_for_genre/{genre}", tags=['Consultas generales'])
 async def get_user_for_genre(genre: str):
     try:
-        parquet_path3 = "Dataset/dataset_endpoint_3.parquet"
-        #parquet_path3 = "C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_3.parquet"
+        #parquet_path3 = "Dataset/dataset_endpoint_3.parquet"
+        parquet_path3 = "C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/dataset_endpoint_3.parquet"
         df = pd.read_parquet(parquet_path3)
         result = UserForGenre(genre, df)
         return JSONResponse(content=result)
@@ -188,11 +188,11 @@ def best_developer_year(dataframe, year):
     result = [{"Puesto {}: {}".format(i+1, row['developer']): row['sentiment_analysis']} for i, (_, row) in enumerate(top_developers.iterrows())]
     return result
 
-@app.get("/best_developer_year/{year}")
+@app.get("/best_developer_year/{year}", tags=['Consultas generales'])
 async def get_best_developer_year(year: int):
     try:
         #parquet_path4 = "Dataset/dataset_endpoint_4.parquet"
-        parquet_path4 = "C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_4.parquet"
+        parquet_path4 = "C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/dataset_endpoint_4.parquet"
         df = pd.read_parquet(parquet_path4)
         result = best_developer_year(df, year)
         return JSONResponse(content=result)
@@ -230,11 +230,11 @@ def developer_reviews_analysis(df, desarrolladora):
     result = {desarrolladora: [f"Negative = {negative_count}", f"Positive = {positive_count}"]}
     return result
 
-@app.get("/developer_reviews_analysis/{desarrolladora}")
+@app.get("/developer_reviews_analysis/{desarrolladora}", tags=['Consultas generales'])
 async def get_developer_reviews_analysis(desarrolladora: str):
     try:
-        parquet_path5 = "Dataset/dataset_endpoint_5.parquet"
-        #parquet_path5 = "C:/Users/Usuario/Desktop/Bootcamp_HENRY/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Datasets/dataset_endpoint_5.parquet"
+        #parquet_path5 = "Dataset/dataset_endpoint_5.parquet"
+        parquet_path5 = "C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/dataset_endpoint_5.parquet"
         df = pd.read_parquet(parquet_path5)
         result = developer_reviews_analysis(df, desarrolladora)
         return JSONResponse(content=result)
