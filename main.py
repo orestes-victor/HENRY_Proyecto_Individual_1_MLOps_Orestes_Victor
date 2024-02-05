@@ -254,7 +254,8 @@ async def get_developer_reviews_analysis(desarrolladora: str):
 
 #MODELO DE RECOMENDACIÓN________________________________________________________________________________________________________________________________________________________________________________
 
-df = pd.read_csv('C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/df_recomendacion.csv')
+#df = pd.read_csv('C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/df_recomendacion.csv')
+df = pd.read_csv('Dataset/df_recomendacion.csv')
 
 piv = df.pivot_table(index=['user_id'], columns=['item_name'], values='rating')
 
