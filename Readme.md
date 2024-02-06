@@ -16,7 +16,7 @@
 # Sistema de recomendación de videojuegos para usuarios de Steam
 
 ## Pagina web del proyecto
-___
+
 Le invitamos a visitar la página web del proyecto, donde podrá acceder al modelo de predicción, así como a los archivos originales con los que se llevará a cabo el trabajo. Además, encontrará información detallada sobre las diversas etapas del proyecto y podrá conocer al autor del mismo. Para acceder a la página, le proporcionamos el siguiente enlace:
 
 <br/>
@@ -31,19 +31,19 @@ Le invitamos a visitar la página web del proyecto, donde podrá acceder al mode
 
 
 ## Descripción del Proyecto
-___
+
 Este proyecto se centra en el desarrollo de un sistema de MLOps, abarcando desde la ingeniería de datos hasta la implementación de modelos de aprendizaje automático.
 
 <br/>
 
 ## Contexto
-___
+
 [Steam](https://store.steampowered.com/?l=spanish), creada por Valve Corporation en 2003, es una plataforma de distribución digital de videojuegos inicialmente diseñada para actualizar automáticamente los juegos de Valve. Con el tiempo, se expandió para incluir juegos de otros desarrolladores. Aunque cuenta con más de 325 millones de usuarios y más de 25,000 juegos, las estadísticas precisas son limitadas desde 2018, ya que Steam restringió el acceso a datos detallados.
 
 <br/>
 
 ## Conjunto de datos
-___
+
 El proyecto parte de una carpeta con 3 archivos  que nos proporciona [HENRY](https://www.soyhenry.com/) para desarrollar el análisis:
 
 * `australian_user_reviews.json` es un dataset que contiene los comentarios que los usuarios realizaron sobre los juegos que consumen, además de datos adicionales como si recomiendan o no ese juego, emoticones de gracioso y estadísticas de si el comentario fue útil o no para otros usuarios. También presenta el id del usuario que comenta con su url del perfil y el id del juego que comenta.
@@ -59,7 +59,7 @@ Para acceder a la carpeta con los archivos hacer clik [aqui](https://drive.googl
 
 
 ## Objetivo
-___
+
 El objetivo principal es crear un flujo de trabajo eficiente que incluya la recopilación y transformación de datos, análisis exploratorio, desarrollo de modelos y su implementación utilizando prácticas de MLOps. <p/>
 
 Este proyecto simula el trabajo de un MLOps Engineer combinando las funciones de Data Engineer y Data Scientist para la plataforma Steam. Se requiere desarrollar un Producto Mínimo Viable que incluya una API en la nube y la implementación de dos modelos de Machine Learning: análisis de sentimientos en comentarios de usuarios y recomendación de juegos basada en nombre o preferencias de usuario.
@@ -67,7 +67,7 @@ Este proyecto simula el trabajo de un MLOps Engineer combinando las funciones de
 <br/>
 
 ## Etapas del Proyecto
-___
+
 
 ![Proceso](Assets/Procesos_MLOps.png)
 <br />
@@ -135,13 +135,13 @@ Para implementar la API, el código correspondiente se encuentra en el archivo `
 
 
 ## 4. Video Explicativo
-___
+
 En proceso
 
 <br/>
 
 ## Estructura del Repositorio
-___
+
 - **/Assets**: sirve para almacenar y organizar los archivos multimedia y otros recursos necesarios.
 - **/Datasets**: Archivos necesarios donde consultará nuestro codigo principal.
 - **/Notebooks**: Notebooks de Jupyter utilizados para la exploración y desarrollo.
@@ -153,11 +153,11 @@ ___
 <br/>
 
 ## Requisitos de Instalación y Ejecución
-___
+
 En proceso
 
 <br/>
 
 ## Colaboradores
-___
+
 - Orestes Victor
