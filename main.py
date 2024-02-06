@@ -225,7 +225,7 @@ def best_developer_year(dataframe, year):
                     """ <font color="black">
                     INSTRUCCIONES<br>
                     1. Haga clik en "Try it out".<br>
-                    2. Ingrese un año para saber el top 3 de desarrolladores con juegos MÁS recomendados por usuarios para el año dado.. Ejemplo: Valve <br>
+                    2. Ingrese un año para saber el top 3 de desarrolladores con juegos MÁS recomendados por usuarios para el año dado.. Ejemplo: 2015 <br>
                     3. Scrollear a "Response body" para ver el resultado.
                     </font>"""
                     , tags=['Consultas generales'])
