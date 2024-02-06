@@ -129,6 +129,8 @@ Para implementar la API, el código correspondiente se encuentra en el archivo `
 
 Link del video explicando el proyecto: [Mi Primer MLOps](https://youtu.be/TkTCxtYVkzQ)
 
+[![Video de Introducción](https://img.youtube.com/vi/TU_CODIGO_DE_YOUTUBE/0.jpg)](https://www.youtube.com/watch?v=TkTCxtYVkzQ&ab_channel=VictorO)
+
 <br/>
 
 ## Estructura del Repositorio
