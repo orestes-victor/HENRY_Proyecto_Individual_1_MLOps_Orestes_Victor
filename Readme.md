@@ -101,8 +101,7 @@ El progreso en el desarrollo de las consultas generales se visualiza en el sigui
 
 Para implementar la API, el código correspondiente se encuentra en el archivo `main.py` de nuestro repositorio. Si deseas ejecutar la API localmente, sigue estos pasos:
 
-* Clona el proyecto utilizando el comando:
-     `git clone https://github.com/orestes-victor/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor.git`.
+* Clona el proyecto utilizando el comando: `git clone https://github.com/orestes-victor/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor.git`. 
   <br/>
 * Prepara el entorno de trabajo en Visual Studio Code:<br/>
   <br/>
