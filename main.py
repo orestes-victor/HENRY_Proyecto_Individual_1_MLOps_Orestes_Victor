@@ -315,7 +315,8 @@ def calculate_recommendations(df):
     return item_sim_df
 
 # Cargar el DataFrame fuera de la función del endpoint
-parquet_path_recomendacion = "C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/df_recomendacion.parquet"
+#parquet_path_recomendacion = "C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/df_recomendacion.parquet"
+parquet_path_recomendacion = "Dataset/df_recomendacion.parquet"
 df_recomendacion = pd.read_parquet(parquet_path_recomendacion)
 item_sim_df_recomendacion = calculate_recommendations(df_recomendacion)
 
@@ -343,5 +344,9 @@ async def top_game(game: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+<<<<<<< HEAD
 #MODELO DE RECOMENDACIÓN 2 ________________________________________________________________________________________________________________________________________________________________________________
 
+=======
+#MODELO DE RECOMENDACIÓN________________________________________________________________________________________________________________________________________________________________________________
+>>>>>>> edcefac3f1839e347f6e3e2788ecf235abcda46c
