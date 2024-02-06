@@ -127,7 +127,7 @@ Para implementar la API, el código correspondiente se encuentra en el archivo `
 
 ## 4. Video Explicativo
 
-En proceso
+Link del video explicando el proyecto: [Mi Primer MLOps](https://youtu.be/TkTCxtYVkzQ)
 
 <br/>
 
@@ -143,12 +143,6 @@ En proceso
 
 <br/>
 
-## Requisitos de Instalación y Ejecución
-
-En proceso
-
-<br/>
-
-## Colaboradores
+## Alumno de HENRY
 
 - Orestes Victor
