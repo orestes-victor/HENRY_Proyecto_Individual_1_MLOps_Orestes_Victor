@@ -68,7 +68,15 @@ def developer(dataframe, desarrollador):
     stats_por_anio = stats_por_anio.rename(columns={'percentage_free': '% Free'})
     return stats_por_anio[['Año', 'Items', '% Free']]
 
-@app.get("/developer/{desarrollador}", tags=['Consultas generales'])
+@app.get("/developer/{desarrollador}",
+                    description=
+                    """ <font color="black">
+                    INSTRUCCIONES<br>
+                    1. Haga clik en "Try it out".<br>
+                    2. Ingrese un desarrollador para ver la cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora. Ejemplo: Valve <br>
+                    3. Scrollear a "Response body" para ver el resultado.
+                    </font>"""
+                    , tags=['Consultas generales'])
 async def get_developer(desarrollador: str):
     try:
         #parquet_path = "C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/dataset_endpoint_1.parquet"
@@ -117,7 +125,15 @@ def userdata(df, user_id):
 
     return resultado
 
-@app.get("/userdata/{user_id}", tags=['Consultas generales'])
+@app.get("/userdata/{user_id}",
+                    description=
+                    """ <font color="black">
+                    INSTRUCCIONES<br>
+                    1. Haga clik en "Try it out".<br>
+                    2. Ingrese un identificador de usuario (user_id) para Debe devolver cantidad de dinero gastado por el usuario, el porcentaje de recomendación en base a reviews.recommend y cantidad de items.. Ejemplo: GamekungX <br>
+                    3. Scrollear a "Response body" para ver el resultado.
+                    </font>"""
+                    , tags=['Consultas generales'])
 async def get_user_id(user_id: str):
     try:
         parquet_path2 = "Dataset/dataset_endpoint_2.parquet"
@@ -160,7 +176,15 @@ def UserForGenre(genre: str, df):
     result = {"Usuario con más horas jugadas para género " + genre: max_playtime_user, "Horas jugadas": playtime_list}
     return result
 
-@app.get("/user_for_genre/{genre}", tags=['Consultas generales'])
+@app.get("/user_for_genre/{genre}",
+                    description=
+                    """ <font color="black">
+                    INSTRUCCIONES<br>
+                    1. Haga clik en "Try it out".<br>
+                    2. Ingrese un genero para devolver el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año de lanzamiento. Ejemplo: Action <br>
+                    3. Scrollear a "Response body" para ver el resultado.
+                    </font>"""
+                    , tags=['Consultas generales'])
 async def get_user_for_genre(genre: str):
     try:
         parquet_path3 = "Dataset/dataset_endpoint_3.parquet"
@@ -196,7 +220,15 @@ def best_developer_year(dataframe, year):
     result = [{"Puesto {}: {}".format(i+1, row['developer']): row['sentiment_analysis']} for i, (_, row) in enumerate(top_developers.iterrows())]
     return result
 
-@app.get("/best_developer_year/{year}", tags=['Consultas generales'])
+@app.get("/best_developer_year/{year}",
+                    description=
+                    """ <font color="black">
+                    INSTRUCCIONES<br>
+                    1. Haga clik en "Try it out".<br>
+                    2. Ingrese un año para saber el top 3 de desarrolladores con juegos MÁS recomendados por usuarios para el año dado.. Ejemplo: Valve <br>
+                    3. Scrollear a "Response body" para ver el resultado.
+                    </font>"""
+                    , tags=['Consultas generales'])
 async def get_best_developer_year(year: int):
     try:
         parquet_path4 = "Dataset/dataset_endpoint_4.parquet"
@@ -238,7 +270,15 @@ def developer_reviews_analysis(df, desarrolladora):
     result = {desarrolladora: [f"Negative = {negative_count}", f"Positive = {positive_count}"]}
     return result
 
-@app.get("/developer_reviews_analysis/{desarrolladora}", tags=['Consultas generales'])
+@app.get("/developer_reviews_analysis/{desarrolladora}",
+                    description=
+                    """ <font color="black">
+                    INSTRUCCIONES<br>
+                    1. Haga clik en "Try it out".<br>
+                    2. Ingrese el developer en el box abajo. Ejemplo: Valve <br>
+                    3. Scrollear a "Response body" para ver cuantas reseñas positivas y negativas tuvo el desarrollador.
+                    </font>"""
+                    , tags=['Consultas generales'])
 async def get_developer_reviews_analysis(desarrolladora: str):
     try:
         parquet_path5 = "Dataset/dataset_endpoint_5.parquet"
@@ -252,7 +292,7 @@ async def get_developer_reviews_analysis(desarrolladora: str):
 
 
 
-#MODELO DE RECOMENDACIÓN________________________________________________________________________________________________________________________________________________________________________________
+#MODELO DE RECOMENDACIÓN 1 ________________________________________________________________________________________________________________________________________________________________________________
 
 def calculate_recommendations(df):
     # Tomar una muestra representativa del 10% del conjunto de datos
@@ -279,7 +319,17 @@ parquet_path_recomendacion = "C:/Users/Usuario/Desktop/Repositorios Github/HENRY
 df_recomendacion = pd.read_parquet(parquet_path_recomendacion)
 item_sim_df_recomendacion = calculate_recommendations(df_recomendacion)
 
-@app.get("/top_game/{game}", tags=['Sistema de recomendación'])
+@app.get("/top_game/{game}", 
+
+                    description=
+                    """ <font color="black">
+                    INSTRUCCIONES<br>
+                    1. Haga clik en "Try it out".<br>
+                    2. Ingrese el juego en el box abajo. Ejemplo: Killing Floor o Metro 2033 <br>
+                    3. Scrollear a "Response body" para ver los juegos recomendados similares al ingresado.
+                    </font>"""
+                    ,tags=['Sistema de recomendación'])
+                    
 async def top_game(game: str):
     try:
         count = 1
@@ -293,4 +343,5 @@ async def top_game(game: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-#MODELO DE RECOMENDACIÓN________________________________________________________________________________________________________________________________________________________________________________
+#MODELO DE RECOMENDACIÓN 2 ________________________________________________________________________________________________________________________________________________________________________________
+
