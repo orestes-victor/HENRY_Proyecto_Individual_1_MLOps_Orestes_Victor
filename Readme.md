@@ -103,23 +103,23 @@ Para implementar la API, el código correspondiente se encuentra en el archivo `
 
 * Clona el proyecto utilizando el comando: `git clone https://github.com/orestes-victor/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor.git`. 
 
-* Prepara el entorno de trabajo en Visual Studio Code:<br/>
+* Prepara el entorno de trabajo en Visual Studio Code:
 
-* Crea un entorno Python mediante: python -m venv env.
+* Crea un entorno virtual en Python mediante: python -m venv env
 
-* Accede al entorno con: env\Scripts\activate.
+* Una vez dentro de tu carpeta del proyecto accede al entorno con: env\Scripts\activate.
 
-* Instala las dependencias con: pip install -r requirements.txt.
+* Instala las dependencias que se encuentran el archivo requiremets con: pip install -r requirements.txt
 
 * Ejecuta el archivo main.py desde la consola activando uvicorn. Para ello, utiliza el comando: uvicorn main:app --reload.
 
-* Haz clic con Ctrl sobre la dirección http://XXX.X.X.X:XXXX (se muestra en la consola).
+* Haz Crtl + click sobre el enlace que da la dirección [http://127.0.0.1:8000](http://127.0.0.1:8000) (se muestra en la consola).
 
-* En el navegador, añade /docs al final de la URL para acceder a ReDoc.
+* En el navegador, añade "/docs" al final de la URL para acceder a ReDoc. (ejemplo: http://127.0.0.1:8000/docs)
 
 * Dentro de cada función, haz clic en "Try it out", luego introduce los datos necesarios o utiliza los ejemplos predeterminados.
 
-* Finalmente, ejecuta y observa la respuesta.
+* Finalmente, ejecuta haciendo click en "Execute" y observa la respuesta en "reponse body".
 
 
   <br/>
