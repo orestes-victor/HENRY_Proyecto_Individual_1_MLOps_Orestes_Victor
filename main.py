@@ -254,40 +254,43 @@ async def get_developer_reviews_analysis(desarrolladora: str):
 
 #MODELO DE RECOMENDACIÓN________________________________________________________________________________________________________________________________________________________________________________
 
-#df = pd.read_parquet('C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/df_recomendacion.parquet')
-df = pd.read_parquet('Dataset/df_recomendacion.parquet')  # Cambia el nombre del archivo a tu archivo parquet
+def calculate_recommendations(df):
+    # Tomar una muestra representativa del 10% del conjunto de datos
+    df_sample = df.sample(frac=0.1, random_state=42)
 
-piv = df.pivot_table(index=['user_id'], columns=['item_name'], values='rating')
+    piv = df_sample.pivot_table(index=['user_id'], columns=['item_name'], values='rating')
+    piv_norm = piv.apply(lambda x: (x - np.mean(x)) / (np.max(x) - np.min(x)), axis=1)
+    piv_norm.fillna(0, inplace=True)
+    piv_norm = piv_norm.T
+    piv_norm = piv_norm.loc[:, (piv_norm != 0).any(axis=0)]
+    
+    piv_sparse = csr_matrix(piv_norm.values)
+    
+    item_similarity = cosine_similarity(piv_sparse)
+    user_similarity = cosine_similarity(piv_sparse.T)
 
-# Normalización del dataframe 'piv'
-piv_norm = piv.apply(lambda x: (x - np.mean(x)) / (np.max(x) - np.min(x)), axis=1)
-# Se borran las columnas que contienen solo cero o no tienen rating, se rellenan los vacíos con 0 y se hace la transpuesta
-piv_norm.fillna(0, inplace=True)
-piv_norm = piv_norm.T
-piv_norm = piv_norm.loc[:, (piv_norm != 0).any(axis=0)]
+    item_sim_df = pd.DataFrame(item_similarity, index=piv_norm.index, columns=piv_norm.index)
+    user_sim_df = pd.DataFrame(user_similarity, index=piv_norm.columns, columns=piv_norm.columns)
 
-piv_sparse = csr_matrix(piv_norm.values)
+    return item_sim_df
 
-item_similarity = cosine_similarity(piv_sparse)
-user_similarity = cosine_similarity(piv_sparse.T)
-
-# item similarity dataframe
-item_sim_df = pd.DataFrame(item_similarity, index=piv_norm.index, columns=piv_norm.index)
-# user similarity dataframe
-user_sim_df = pd.DataFrame(user_similarity, index=piv_norm.columns, columns=piv_norm.columns)
-
+# Cargar el DataFrame fuera de la función del endpoint
+parquet_path_recomendacion = "C:/Users/Usuario/Desktop/Repositorios Github/HENRY_Proyecto_Individual_1_MLOps_Orestes_Victor/Dataset/df_recomendacion.parquet"
+df_recomendacion = pd.read_parquet(parquet_path_recomendacion)
+item_sim_df_recomendacion = calculate_recommendations(df_recomendacion)
 
 @app.get("/top_game/{game}", tags=['Sistema de recomendación'])
-def top_game(game: str):
+async def top_game(game: str):
+    try:
+        count = 1
+        similar_games = []
 
-    count = 1
-    similar_games = []
+        for item in item_sim_df_recomendacion.sort_values(by=game, ascending=False).index[1:6]:
+            similar_games.append({'No.': count, 'Game': item})
+            count += 1
 
-    for item in item_sim_df.sort_values(by=game, ascending=False).index[1:6]:
-        similar_games.append({'No.': count, 'Game': item})
-        count += 1
-
-    return {"similar_games": similar_games}
-
+        return JSONResponse(content={"similar_games": similar_games})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 #MODELO DE RECOMENDACIÓN________________________________________________________________________________________________________________________________________________________________________________
